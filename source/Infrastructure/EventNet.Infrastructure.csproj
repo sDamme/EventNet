@@ -1,0 +1,27 @@
+<Project Sdk="Microsoft.NET.Sdk">
+	<ItemGroup>
+		<PackageReference Include="DotNetCore.EntityFrameworkCore" />
+		<PackageReference Include="DotNetCore.Objects" />
+		<PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Tools">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+			<TreatAsUsed>true</TreatAsUsed>
+		</PackageReference>
+	</ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\Domain\EventNet.Domain.csproj" />
+		<ProjectReference Include="..\Infrastructure\EventNet.Infrastructure.csproj" />
+	</ItemGroup>
+	<ItemGroup>
+		<Using Include="EventNet.Domain" />
+		<Using Include="EventNet.Infrastructure" />
+		<Using Include="DotNetCore.EntityFrameworkCore" />
+		<Using Include="DotNetCore.Objects" />
+		<Using Include="DotNetCore.Repositories" />
+		<Using Include="Microsoft.EntityFrameworkCore" />
+		<Using Include="Microsoft.EntityFrameworkCore.Design" />
+		<Using Include="Microsoft.EntityFrameworkCore.Metadata.Builders" />
+		<Using Include="System.Linq.Expressions" />
+	</ItemGroup>
+</Project>
