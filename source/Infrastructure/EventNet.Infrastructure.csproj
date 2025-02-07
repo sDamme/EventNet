@@ -10,10 +10,11 @@
 	</ItemGroup>
 	<ItemGroup>
 		<ProjectReference Include="..\Domain\EventNet.Domain.csproj" />
-
+		<ProjectReference Include="..\Model\EventNet.Model.csproj" />
 	</ItemGroup>
 	<ItemGroup>
 		<Using Include="EventNet.Domain" />
+		<Using Include="EventNet.Model" />
 		<Using Include="DotNetCore.EntityFrameworkCore" />
 		<Using Include="DotNetCore.Objects" />
 		<Using Include="DotNetCore.Repositories" />

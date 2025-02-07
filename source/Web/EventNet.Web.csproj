@@ -14,6 +14,7 @@
 	</ItemGroup>
 	<ItemGroup>
 		<ProjectReference Include="..\Application\EventNet.Application.csproj" />
+		<ProjectReference Include="..\Model\EventNet.Model.csproj" />
 	</ItemGroup>
 	<ItemGroup>
 		<Using Include="EventNet.Application" />
