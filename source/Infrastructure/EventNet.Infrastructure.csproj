@@ -1,7 +1,8 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 	<ItemGroup>
 		<PackageReference Include="DotNetCore.EntityFrameworkCore" />
 		<PackageReference Include="DotNetCore.Objects" />
+		<PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore.Tools">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -21,6 +22,12 @@
 		<Using Include="Microsoft.EntityFrameworkCore" />
 		<Using Include="Microsoft.EntityFrameworkCore.Design" />
 		<Using Include="Microsoft.EntityFrameworkCore.Metadata.Builders" />
+		<Using Include="Npqsql.EntityFrameworkCore.PostgreSQL"/>
 		<Using Include="System.Linq.Expressions" />
+	</ItemGroup>
+	<ItemGroup>
+	  <Folder Include="Event\" />
+	  <Folder Include="Attendee\" />
+	  <Folder Include="Migrations\" />
 	</ItemGroup>
 </Project>
