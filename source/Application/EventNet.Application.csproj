@@ -3,10 +3,10 @@
 		<PackageReference Include="DotNetCore.Mediator" />
 	</ItemGroup>
 	<ItemGroup>
-		<ProjectReference Include="..\Database\EventNet.Database.csproj" />
+		<ProjectReference Include="..\Database\EventNet.Infrastructure.csproj" />
 	</ItemGroup>
 	<ItemGroup>
-		<Using Include="EventNet.Database" />
+		<Using Include="EventNet.Infrastructure" />
 		<Using Include="EventNet.Domain" />
 		<Using Include="EventNet.Model" />
 		<Using Include="DotNetCore.EntityFrameworkCore" />
