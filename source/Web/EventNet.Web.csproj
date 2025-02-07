@@ -17,7 +17,7 @@
 	</ItemGroup>
 	<ItemGroup>
 		<Using Include="EventNet.Application" />
-		<Using Include="EventNet.Database" />
+		<Using Include="EventNet.Infrastructure" />
 		<Using Include="EventNet.Model" />
 		<Using Include="EventNet.Web" />
 		<Using Include="DotNetCore.AspNetCore" />

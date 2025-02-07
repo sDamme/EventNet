@@ -1,0 +1,14 @@
+<!-- 
+  Directory.Build.props:
+  This file defines common build properties for all projects in this directory and its subdirectories.
+  It helps maintain consistency across the solution by centralizing settings like TargetFramework, ImplicitUsings, etc.
+-->
+<Project>
+    <PropertyGroup>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <IsPackable>false</IsPackable>
+        <LangVersion>latest</LangVersion>
+        <NeutralLanguage>en</NeutralLanguage>
+        <TargetFramework>net9.0</TargetFramework>
+    </PropertyGroup>
+</Project>

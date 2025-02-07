@@ -1,0 +1,28 @@
+<!-- 
+  Directory.Packages.props:
+  This file centralizes NuGet package version management for the solution.
+  By specifying PackageVersion items here, all projects will use these versions, reducing duplication and version conflicts.
+-->
+<Project>
+  <PropertyGroup>
+    <EnablePackageVersionOverride>false</EnablePackageVersionOverride>
+    <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageVersion Include="DotNetCore.AspNetCore" Version="19.10.0" />
+    <PackageVersion Include="DotNetCore.Domain" Version="19.10.0" />
+    <PackageVersion Include="DotNetCore.EntityFrameworkCore" Version="19.10.0" />
+    <PackageVersion Include="DotNetCore.IoC" Version="19.10.0" />
+    <PackageVersion Include="DotNetCore.Logging" Version="19.10.0" />
+    <PackageVersion Include="DotNetCore.Mediator" Version="19.10.0" />
+    <PackageVersion Include="DotNetCore.Objects" Version="19.10.0" />
+    <PackageVersion Include="DotNetCore.Security" Version="19.10.0" />
+    <PackageVersion Include="DotNetCore.Services" Version="19.10.0" />
+    <PackageVersion Include="Microsoft.AspNetCore.SpaProxy" Version="9.0.1" />
+    <PackageVersion Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="9.0.1" />
+    <PackageVersion Include="Microsoft.EntityFrameworkCore.Tools" Version="9.0.1" />
+    <PackageVersion Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.1" />
+    <PackageVersion Include="Microsoft.Extensions.Localization" Version="9.0.1" />
+  </ItemGroup>
+</Project>
