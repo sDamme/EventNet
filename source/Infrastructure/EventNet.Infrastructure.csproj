@@ -22,12 +22,10 @@
 		<Using Include="Microsoft.EntityFrameworkCore" />
 		<Using Include="Microsoft.EntityFrameworkCore.Design" />
 		<Using Include="Microsoft.EntityFrameworkCore.Metadata.Builders" />
-		<Using Include="Npqsql.EntityFrameworkCore.PostgreSQL"/>
+		<Using Include="Npgsql.EntityFrameworkCore.PostgreSQL" />
 		<Using Include="System.Linq.Expressions" />
 	</ItemGroup>
 	<ItemGroup>
-	  <Folder Include="Event\" />
-	  <Folder Include="Attendee\" />
 	  <Folder Include="Migrations\" />
 	</ItemGroup>
 </Project>

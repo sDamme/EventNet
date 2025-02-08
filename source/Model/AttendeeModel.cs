@@ -3,7 +3,7 @@
     public abstract record AttendeeModel
     {
         public long Id { get; init; }
-        public string PaymentType { get; init; }
+        public PaymentType PaymentType { get; init; }
         public string Description { get; init; }
     }
 

@@ -16,7 +16,7 @@
             builder.Entity<BusinessAttendee>().HasData(new
             {
                 Id = 1L,
-                PaymentType = (int)PaymentType.BankTransfer,
+                PaymentType = PaymentType.BankTransfer,
                 EventId = 1L,
                 LegalName = "Tech Corp Ltd",
                 RegistrationCode = "TC123456",
@@ -27,7 +27,7 @@
             builder.Entity<IndividualAttendee>().HasData(new
             {
                 Id = 2L,
-                PaymentType = (int)PaymentType.Cash,
+                PaymentType = PaymentType.Cash,
                 EventId = 1L,
                 FirstName = "John",
                 LastName = "Doe",
