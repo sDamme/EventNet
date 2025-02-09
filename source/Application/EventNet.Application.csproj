@@ -1,6 +1,7 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 	<ItemGroup>
 		<PackageReference Include="DotNetCore.Mediator" />
+		<PackageReference Include="DotNetCore.Security" />
 	</ItemGroup>
 	<ItemGroup>
 		<ProjectReference Include="..\Infrastructure\EventNet.Infrastructure.csproj" />
@@ -17,9 +18,6 @@
 		<Using Include="DotNetCore.Security" />
 		<Using Include="FluentValidation" />
 		<Using Include="Microsoft.Extensions.Configuration" />
-		<Using Include="Microsoft.Extensions.Localization" />
-		<Using Include="Microsoft.IdentityModel.Tokens" />
-		<Using Include="System.IdentityModel.Tokens.Jwt" />
 		<Using Include="System.Net.HttpStatusCode" Static="true" />
 		<Using Include="System.Security.Claims" />
 		<Using Include="System.Text" />
