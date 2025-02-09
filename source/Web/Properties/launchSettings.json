@@ -1,5 +1,14 @@
 {
   "profiles": {
+    "Run": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "ASPNETCORE_HOSTINGSTARTUPASSEMBLIES": "Microsoft.AspNetCore.SpaProxy"
+      },
+      "launchBrowser": true,
+      "applicationUrl": "https://localhost:8090"
+    },
     "EventNet.Web": {
       "commandName": "Project",
       "launchBrowser": true,

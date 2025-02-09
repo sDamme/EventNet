@@ -1,5 +1,3 @@
-using System.Runtime.Remoting.Contexts;
-
 var builder = WebApplication.CreateBuilder();
 
 builder.Host.UseSerilog();
