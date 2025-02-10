@@ -1,3 +1,5 @@
+using System.Text.Json.Serialization;
+
 var builder = WebApplication.CreateBuilder();
 
 builder.Host.UseSerilog();
@@ -5,9 +7,15 @@ builder.Host.UseSerilog();
 builder.Services.AddResponseCompression();
 builder.Services.AddJsonStringLocalizer();
 
-
-builder.Services.AddSwaggerDefault();
-builder.Services.AddControllers().AddJsonOptions();
+builder.Services.AddContext<Context>(options => options.UseNpgsql(builder.Configuration.GetConnectionString(nameof(Context))));
+builder.Services.AddClassesMatchingInterfaces(nameof(EventNet));
+builder.Services.AddMediator(nameof(EventNet));
+builder.Services.AddSwaggerGen();
+builder.Services.AddControllers()
+    .AddJsonOptions(options =>
+    {
+        options.JsonSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull;
+    });
 
 var application = builder.Build();
 

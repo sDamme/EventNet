@@ -2,12 +2,78 @@
 {
     public sealed class EventRepository(Context context) : EFRepository<Event>(context), IEventRepository
     {
-        public static Expression<Func<Event, EventModel>> Model => entity => new EventModel { Id = entity.Id, Name = entity.Name };
+        public static Expression<Func<Event, EventModel>> Model => entity => new EventModel {
+            Id = entity.Id,
+            Name = entity.Name,
+            EventDate = entity.EventDate,
+            Location = entity.Location,
+            Description = entity.Description,
+        };
 
-        public Task<EventModel> GetModelAsync(long id) => Queryable.Where(entity => entity.Id == id).Select(Model).SingleOrDefaultAsync();
+        public async Task<EventModel> GetModelAsync(long id)
+        {
+            // First, retrieve the event with its attendees from the database.
+            var entity = await Queryable
+                .Where(e => e.Id == id)
+                .Include(e => e.Attendees)
+                .SingleOrDefaultAsync();
+
+            if (entity == null)
+                return null;
+
+            // Map the event entity to your EventModel.
+            var model = new EventModel
+            {
+                Id = entity.Id,
+                Name = entity.Name,
+                EventDate = entity.EventDate,
+                Location = entity.Location,
+                Description = entity.Description,
+                // Reuse your mapping method for each attendee.
+                Attendees = entity.Attendees.Select(MapToModel).ToList()
+            };
+
+            // Compute the total attendee count:
+            // - Each IndividualAttendee counts as 1.
+            // - Each BusinessAttendee counts as its NumberOfAttendees.
+            model.AttendeeCount = entity.Attendees.Sum(a =>
+                a is BusinessAttendee business ? business.NumberOfAttendees : 1);
+
+            return model;
+        }
 
         public Task<Grid<EventModel>> GridAsync(GridParameters parameters) => Queryable.Select(Model).GridAsync(parameters);
-
+        
         public async Task<IEnumerable<EventModel>> ListModelAsync() => await Queryable.Select(Model).ToListAsync();
+
+        private AttendeeModel MapToModel(Attendee entity)
+        {
+            if (entity is IndividualAttendee individual)
+            {
+                return new IndividualAttendeeModel
+                {
+                    Id = individual.Id,
+                    PaymentType = individual.PaymentType.ToString(),
+                    Description = individual.Description,
+                    FirstName = individual.FirstName,
+                    LastName = individual.LastName,
+                    PersonalIdCode = individual.PersonalIdCode
+                };
+            }
+            else if (entity is BusinessAttendee business)
+            {
+                return new BusinessAttendeeModel
+                {
+                    Id = business.Id,
+                    PaymentType = business.PaymentType.ToString(),
+                    Description = business.Description,
+                    LegalName = business.LegalName,
+                    RegistrationCode = business.RegistrationCode,
+                    NumberOfAttendees = business.NumberOfAttendees
+                };
+            }
+
+            throw new InvalidOperationException("Unknown attendee type.");
+        }
     }
 }

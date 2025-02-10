@@ -13,13 +13,15 @@
             return Mediator.HandleAsync<AddAttendeeRequest, long>(fullRequest).ApiResult();
         }
 
+     
+
         // GET api/events/{eventId}/attendees/{attendeeId}
         [HttpGet("{attendeeId:long}")]
         public IActionResult Get(long eventId, long attendeeId)
         {
             // Even if eventId isn't strictly needed for fetching (if attendee IDs are unique),
             // including it can clarify the context.
-            return Mediator.HandleAsync(new GetAttendeeRequest(attendeeId)).ApiResult();
+            return Mediator.HandleAsync<GetAttendeeRequest, AttendeeModel>(new GetAttendeeRequest(attendeeId)).ApiResult();
         }
 
         // PUT api/events/{eventId}/attendees/{attendeeId}

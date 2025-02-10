@@ -21,10 +21,10 @@ namespace EventNet.Infrastructure
         {
             if (entity is IndividualAttendee individual)
             {
-                return new InidividualAttendeeModel
+                return new IndividualAttendeeModel
                 {
                     Id = individual.Id,
-                    PaymentType = individual.PaymentType,
+                    PaymentType = individual.PaymentType.ToString(),
                     Description = individual.Description,
                     FirstName = individual.FirstName,
                     LastName = individual.LastName,
@@ -36,7 +36,7 @@ namespace EventNet.Infrastructure
                 return new BusinessAttendeeModel
                 {
                     Id = business.Id,
-                    PaymentType = business.PaymentType,
+                    PaymentType = business.PaymentType.ToString(),
                     Description = business.Description,
                     LegalName = business.LegalName,
                     RegistrationCode = business.RegistrationCode,
