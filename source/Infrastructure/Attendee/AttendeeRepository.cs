@@ -28,7 +28,7 @@ namespace EventNet.Infrastructure
                     Description = individual.Description,
                     FirstName = individual.FirstName,
                     LastName = individual.LastName,
-                    PersonalIdCode = individual.PersonalIdCode
+                    PersonalIdCode = individual.PersonalIdCode.ToString()
                 };
             }
             else if (entity is BusinessAttendee business)

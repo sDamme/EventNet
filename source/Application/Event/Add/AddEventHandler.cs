@@ -7,7 +7,7 @@
     {
         public async Task<Result<long>> HandleAsync(AddEventRequest request)
         {
-            var entity = new Event(request.Name, request.Time, request.Location, request.Description);
+            var entity = new Event(request.Name, request.EventDate, request.Location, request.Description);
 
             await eventRepository.AddAsync(entity);
 

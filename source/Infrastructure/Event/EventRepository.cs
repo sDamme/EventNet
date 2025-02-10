@@ -45,7 +45,8 @@
         public Task<Grid<EventModel>> GridAsync(GridParameters parameters) => Queryable.Select(Model).GridAsync(parameters);
         
         public async Task<IEnumerable<EventModel>> ListModelAsync() => await Queryable.Select(Model).ToListAsync();
-
+        
+        // TODO: clean duplication of polymorphism mapping
         private AttendeeModel MapToModel(Attendee entity)
         {
             if (entity is IndividualAttendee individual)
@@ -57,7 +58,7 @@
                     Description = individual.Description,
                     FirstName = individual.FirstName,
                     LastName = individual.LastName,
-                    PersonalIdCode = individual.PersonalIdCode
+                    PersonalIdCode = individual.PersonalIdCode.ToString()
                 };
             }
             else if (entity is BusinessAttendee business)

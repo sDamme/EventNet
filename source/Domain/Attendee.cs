@@ -98,13 +98,12 @@ namespace EventNet.Domain
     }
 
 
- 
+
     public class IndividualAttendee : Attendee
     {
-
         public string FirstName { get; private set; }
         public string LastName { get; private set; }
-        public string PersonalIdCode { get; private set; }
+        public PersonalIdCode PersonalIdCode { get; private set; }
         [StringLength(1500)]
         public string Description { get; private set; }
 
@@ -118,14 +117,14 @@ namespace EventNet.Domain
         ) : base(paymentType, eventId)
         {
             SetNames(firstName, lastName);
-            SetPersonalIdCode(personalIdCode);
+            PersonalIdCode = new PersonalIdCode(personalIdCode);
             SetDetails(description);
         }
 
         public override bool IsDuplicateOf(Attendee other)
         {
             return other is IndividualAttendee individual &&
-                    PersonalIdCode == individual.PersonalIdCode;
+                   PersonalIdCode.Equals(individual.PersonalIdCode);
         }
 
         private void SetNames(string firstName, string lastName)
@@ -137,14 +136,6 @@ namespace EventNet.Domain
 
             FirstName = firstName;
             LastName = lastName;
-        }
-
-        private void SetPersonalIdCode(string code)
-        {
-            if (string.IsNullOrWhiteSpace(code))
-                throw new ArgumentException("Personal ID code cannot be empty.");
-
-            PersonalIdCode = code;
         }
 
         private void SetDetails(string description)
@@ -165,12 +156,8 @@ namespace EventNet.Domain
         {
             UpdatePaymentType(paymentType);
             SetNames(firstName, lastName);
-            SetPersonalIdCode(personalIdCode);
+            PersonalIdCode = new PersonalIdCode(personalIdCode);
             SetDetails(details);
         }
     }
-
-    
-
-
 }
