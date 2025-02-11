@@ -24,7 +24,7 @@
                     eventId: request.EventId,
                     firstName: request.FirstName,
                     lastName: request.LastName,
-                    personalIdCode: request.PersonalIdCode,
+                    personalIdCode: new PersonalIdCode(request.PersonalIdCode),
                     description: request.Description ?? string.Empty
                 );
             }

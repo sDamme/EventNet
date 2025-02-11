@@ -24,6 +24,7 @@ namespace EventNet.Infrastructure
                 return new IndividualAttendeeModel
                 {
                     Id = individual.Id,
+                    AttendeeType = individual.AttendeeType,
                     PaymentType = individual.PaymentType.ToString(),
                     Description = individual.Description,
                     FirstName = individual.FirstName,
@@ -36,6 +37,7 @@ namespace EventNet.Infrastructure
                 return new BusinessAttendeeModel
                 {
                     Id = business.Id,
+                    AttendeeType = business.AttendeeType,
                     PaymentType = business.PaymentType.ToString(),
                     Description = business.Description,
                     LegalName = business.LegalName,

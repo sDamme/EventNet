@@ -8,7 +8,8 @@ namespace EventNet.Model
     {
         public long Id { get; init; }
         public string PaymentType { get; init; }
-        
+        public int AttendeeType { get; init; }
+
     }
 
     public sealed record IndividualAttendeeModel : AttendeeModel

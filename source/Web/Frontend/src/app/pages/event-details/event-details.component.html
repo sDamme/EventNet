@@ -1,0 +1,104 @@
+﻿<div class="uk-container uk-margin-top uk-background-white uk-padding-remove">
+    <!-- Header Section -->
+    <div class="uk-grid uk-grid-collapse uk-flex-middle" uk-grid style="height: 90px; overflow: hidden;">
+        <div class="uk-width-1-4@m">
+            <div class="uk-background-primary uk-light uk-flex uk-flex-middle uk-padding">
+                <h3>{{ title }}</h3>
+            </div>
+        </div>
+        <div class="uk-width-3-4@m">
+            <img src="assets/images/libled.jpg" alt="Muru Libled" class="uk-width-1-1">
+        </div>
+    </div>
+
+    <!-- Event Details Section -->
+    <div class="uk-grid uk-flex-center uk-margin-large-top" uk-grid>
+        <div class="uk-width-1-2@m">
+            <h4 class="uk-heading-line uk-text-center"><span>Ürituse detailid</span></h4>
+            <div class="uk-margin">
+                <div class="uk-grid-small" uk-grid>
+                    <div class="uk-width-1-3"><strong>Ürituse nimi:</strong></div>
+                    <div class="uk-width-expand">{{ event.name }}</div>
+                </div>
+            </div>
+            <div class="uk-margin">
+                <div class="uk-grid-small" uk-grid>
+                    <div class="uk-width-1-3"><strong>Toimumisaeg:</strong></div>
+                    <div class="uk-width-expand">
+                        {{ event.eventDate | date: 'dd MMMM yyyy HH:mm' }}
+                    </div>
+                </div>
+            </div>
+            <div class="uk-margin">
+                <div class="uk-grid-small" uk-grid>
+                    <div class="uk-width-1-3"><strong>Koht:</strong></div>
+                    <div class="uk-width-expand">{{ event.location }}</div>
+                </div>
+            </div>
+            <div class="uk-margin">
+                <div class="uk-grid-small" uk-grid>
+                    <div class="uk-width-1-3"><strong>Osavõtjate arv:</strong></div>
+                    <div class="uk-width-expand">{{ event.attendeeCount }}</div>
+                </div>
+            </div>
+            <!-- Attendees List -->
+            <div class="uk-margin">
+                <strong>Osavõtjad:</strong>
+                <div *ngIf="event.attendees?.length; else noAttendees">
+                    <ul class="uk-list uk-list-divider">
+                        <li *ngFor="let guest of event.attendees; let i = index" class="uk-flex uk-flex-between uk-flex-middle">
+                            <div class="uk-width-1-2">
+
+                                <ng-container *ngIf="isIndividual(guest); else businessTemplate">
+                                    {{ i + 1 }}. {{ guest.firstName }} {{ guest.lastName }} - {{ guest.personalIdCode }}
+                                </ng-container>
+                                <ng-template #businessTemplate>
+                                    <ng-container *ngIf="isBusiness(guest)">
+                                        {{ i + 1 }}. {{ guest.legalName }} - {{ guest.registrationCode }}
+                                    </ng-container>
+                                </ng-template>
+                            </div>
+                            <div class="uk-text-right">
+                                <a [routerLink]="['/attendees', guest.id, 'edit']" class="uk-link">Vaata</a>
+                                <button (click)="deleteGuest(guest.id)" class="uk-button uk-button-link">Kustuta</button>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <ng-template #noAttendees>
+                    <p>Osavõtjaid pole hetkel.</p>
+                </ng-template>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Attendee Section -->
+    <div class="uk-margin-large-top">
+        <div class="uk-margin">
+            <div class="uk-grid-small" uk-grid>
+                <div class="uk-width-1-2">
+                    <label>
+                        <input type="radio" name="attendeeType" value="Individual"
+                               [(ngModel)]="attendeeType" (change)="toggleAttendeeForm()" checked>
+                        Eraisik
+                    </label>
+                </div>
+                <div class="uk-width-1-2">
+                    <label>
+                        <input type="radio" name="attendeeType" value="Business"
+                               [(ngModel)]="attendeeType" (change)="toggleAttendeeForm()">
+                        Ettevõte
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div [ngSwitch]="attendeeType">
+            <div *ngSwitchCase="'Individual'">
+                <app-individual-attendee-form [eventId]="event.id"></app-individual-attendee-form>
+            </div>
+            <div *ngSwitchCase="'Business'">
+                <app-business-attendee-form [eventId]="event.id"></app-business-attendee-form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -31,7 +31,7 @@
                 EventId = 1L,
                 FirstName = "John",
                 LastName = "Doe",
-                PersonalIdCode = "39506036025",
+                PersonalIdCode = new PersonalIdCode("39506036025"),
                 Description = "John Doe attending as an individual."
             });
         }

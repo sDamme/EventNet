@@ -3,9 +3,9 @@ import { AppAttendee } from "./attendee";
 export default interface AppEvent {
     id: number;
     name: string;
-    eventdate: Date;
+    eventDate: Date;
     location: string;
     description: string;
-    attendeecount: number;
+    attendeeCount: number;
     attendees: AppAttendee[];
 }

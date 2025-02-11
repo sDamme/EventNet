@@ -1,0 +1,54 @@
+<form [formGroup]="individualForm" (ngSubmit)="onSubmit()">
+    <!-- Hidden Fields -->
+    <input type="hidden" formControlName="eventId">
+    <input type="hidden" formControlName="id">
+
+    <!-- First Name -->
+    <div class="uk-margin">
+        <label class="uk-form-label" for="firstName">Eesnimi:</label>
+        <div class="uk-form-controls">
+            <input type="text" id="firstName" class="uk-input" formControlName="firstName">
+        </div>
+    </div>
+
+    <!-- Last Name -->
+    <div class="uk-margin">
+        <label class="uk-form-label" for="lastName">Perekonnanimi:</label>
+        <div class="uk-form-controls">
+            <input type="text" id="lastName" class="uk-input" formControlName="lastName">
+        </div>
+    </div>
+
+    <!-- Personal ID Code -->
+    <div class="uk-margin">
+        <label class="uk-form-label" for="personalIdCode">Isikukood:</label>
+        <div class="uk-form-controls">
+            <input type="text" id="personalIdCode" class="uk-input" formControlName="personalIdCode">
+        </div>
+    </div>
+
+    <!-- Payment Type -->
+    <div class="uk-margin">
+        <label class="uk-form-label" for="individualPaymentType">Makseviis:</label>
+        <div class="uk-form-controls">
+            <select id="individualPaymentType" class="uk-select" formControlName="paymentType">
+                <option value="Cash">Sularaha</option>
+                <option value="BankTransfer">Pangaülekanne</option>
+            </select>
+        </div>
+    </div>
+
+    <!-- Extra Information -->
+    <div class="uk-margin">
+        <label class="uk-form-label" for="description">Lisainfo:</label>
+        <div class="uk-form-controls">
+            <textarea id="description" rows="3" class="uk-textarea" formControlName="description"></textarea>
+        </div>
+    </div>
+
+    <!-- Buttons -->
+    <div class="uk-flex uk-flex-between">
+        <button type="button" class="uk-button uk-button-default" (click)="router.navigate(['/previous-route'])">Tagasi</button>
+        <button type="submit" class="uk-button uk-button-primary" [disabled]="individualForm.invalid">Salvesta</button>
+    </div>
+</form>

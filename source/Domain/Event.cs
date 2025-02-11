@@ -65,8 +65,8 @@ namespace EventNet.Domain
         {
             ArgumentNullException.ThrowIfNull(attendee);
 
-            if (EventDate <= DateTime.UtcNow)
-                throw new InvalidOperationException("Cannot add attendees to a past event.");
+            //if (EventDate <= DateTime.UtcNow)
+            //    throw new InvalidOperationException("Cannot add attendees to a past event.");
 
             if (_attendees.Any(attendee.IsDuplicateOf))
             {

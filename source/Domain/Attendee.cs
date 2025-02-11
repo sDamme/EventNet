@@ -6,6 +6,7 @@ namespace EventNet.Domain
     {
         public PaymentType PaymentType { get; protected set; }
         public long EventId { get; protected set; }
+        public int AttendeeType { get; set; }
 
         protected Attendee(PaymentType paymentType, long eventId)
         {
@@ -112,19 +113,19 @@ namespace EventNet.Domain
             long eventId,
             string firstName,
             string lastName,
-            string personalIdCode,
+            PersonalIdCode personalIdCode,  // Changed from string to PersonalIdCode
             string description
         ) : base(paymentType, eventId)
         {
             SetNames(firstName, lastName);
-            PersonalIdCode = new PersonalIdCode(personalIdCode);
+            PersonalIdCode = personalIdCode;  // Already a value object; no need to wrap it here
             SetDetails(description);
         }
 
         public override bool IsDuplicateOf(Attendee other)
         {
             return other is IndividualAttendee individual &&
-                   PersonalIdCode.Equals(individual.PersonalIdCode);
+                   PersonalIdCode.Value.Equals(individual.PersonalIdCode.Value);
         }
 
         private void SetNames(string firstName, string lastName)

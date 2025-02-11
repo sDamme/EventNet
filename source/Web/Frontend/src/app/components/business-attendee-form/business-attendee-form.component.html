@@ -1,0 +1,54 @@
+<form [formGroup]="businessForm" (ngSubmit)="onSubmit()">
+    <!-- Hidden Fields -->
+    <input type="hidden" formControlName="eventId">
+    <input type="hidden" formControlName="id">
+
+    <!-- Legal Name -->
+    <div class="uk-margin">
+        <label class="uk-form-label" for="legalName">Juriidiline nimi:</label>
+        <div class="uk-form-controls">
+            <input type="text" id="legalName" class="uk-input" formControlName="legalName">
+        </div>
+    </div>
+
+    <!-- Registration Code -->
+    <div class="uk-margin">
+        <label class="uk-form-label" for="registrationCode">Registrikood:</label>
+        <div class="uk-form-controls">
+            <input type="text" id="registrationCode" class="uk-input" formControlName="registrationCode">
+        </div>
+    </div>
+
+    <!-- Number of Attendees -->
+    <div class="uk-margin">
+        <label class="uk-form-label" for="numberOfAttendees">Osavõtjate arv:</label>
+        <div class="uk-form-controls">
+            <input type="number" id="numberOfAttendees" class="uk-input" formControlName="numberOfAttendees">
+        </div>
+    </div>
+
+    <!-- Payment Type -->
+    <div class="uk-margin">
+        <label class="uk-form-label" for="businessPaymentType">Makseviis:</label>
+        <div class="uk-form-controls">
+            <select id="businessPaymentType" class="uk-select" formControlName="paymentType">
+                <option value="Cash">Sularaha</option>
+                <option value="BankTransfer">Pangaülekanne</option>
+            </select>
+        </div>
+    </div>
+
+    <!-- Extra Information -->
+    <div class="uk-margin">
+        <label class="uk-form-label" for="extraInformation">Lisainfo:</label>
+        <div class="uk-form-controls">
+            <textarea id="extraInformation" rows="3" class="uk-textarea" formControlName="extraInformation"></textarea>
+        </div>
+    </div>
+
+    <!-- Buttons -->
+    <div class="uk-flex uk-flex-between">
+        <button type="button" class="uk-button uk-button-default" (click)="router.navigate(['/previous-route'])">Tagasi</button>
+        <button type="submit" class="uk-button uk-button-primary" [disabled]="businessForm.invalid">Salvesta</button>
+    </div>
+</form>

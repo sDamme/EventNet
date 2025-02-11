@@ -50,7 +50,11 @@
                        .IsRequired();
 
                 builder.Property(i => i.PersonalIdCode)
-                       .IsRequired();
+                        .IsRequired()
+                        .HasConversion(
+                            v => v.Value,              // Convert the PersonalIdCode to its underlying string when saving
+                            v => new PersonalIdCode(v) // Convert the stored string back to a PersonalIdCode when reading
+                        );
 
                 builder.Property(i => i.Description)
                        .HasMaxLength(1500)
