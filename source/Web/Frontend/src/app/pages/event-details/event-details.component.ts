@@ -25,7 +25,7 @@ import BusinessAttendeeFormComponent from 'src/app/components/business-attendee-
 export default class AppEventDetailsComponent implements OnInit {
     event!: AppEvent;
     attendeeType: string = 'Individual';
-    title: string = 'Osavıtjad';
+    title: string = 'Osav√µtjad';
     attendeeTypes = AttendeeType;
 
     constructor(

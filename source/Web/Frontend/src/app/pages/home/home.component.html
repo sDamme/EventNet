@@ -1,6 +1,6 @@
 ﻿<div class="uk-container uk-margin-top uk-padding-remove">
-    <div class="uk-grid uk-grid-collapse uk-flex-middle" uk-grid>
-        <div class="uk-width-1-2@m" style="background-color: #1e87f0; color: white; padding: 2rem;">
+    <div class="uk-grid uk-grid-collapse" uk-grid>
+        <div class="uk-width-1-2@m uk-section-primary uk-preserve-color uk-flex uk-flex-middle uk-padding uk-light">
             <h3>
                 Sed nex elit vestibulum, <strong>tincidunt orci</strong> et, sagittis ex.
                 Vestibulum rutrum <strong>neque sucipit</strong> ante mattis maximus.
@@ -18,24 +18,28 @@
                 <div class="uk-card-header uk-background-primary uk-light uk-text-center">
                     <h5 class="uk-margin-remove">Tulevased üritused</h5>
                 </div>
-
-                <div class="uk-card-body uk-padding-remove">
-                    <div class="uk-list uk-list-divider">
-                        <div class="uk-flex uk-flex-between uk-flex-middle uk-padding-small">
-                            <div class="uk-width-3-4">
-                                <a href="#">1. Event Name</a>
-                            </div>
-                            <div class="uk-width-1-4 uk-text-right">
-                                07.02.2025
-                            </div>
-                            <div>
-                                <button class="uk-button uk-button-text">X</button>
+                <div *ngIf="upcomingEvents.length; else noUpcomingEvents">
+                    <div *ngFor="let event of upcomingEvents; let i = index" class="uk-card-body uk-padding-remove">
+                        <div class="uk-list uk-list-divider">
+                            <div class="uk-flex uk-flex-between uk-flex-middle uk-padding-small">
+                                <div class="uk-width-2-4">
+                                    <a href="/events/{{event.id}}">{{ i + 1 }}. {{ event.name }}</a>
+                                </div>
+                                <div class="uk-width-1-4 uk-text-right">
+                                    {{ event.eventDate | date: 'dd.MM.yyyy' }}
+                                </div>
+                                <div class="uk-width-1-4 uk-text-right">
+                                    <a (click)="deleteEvent(event.id)" href="" uk-icon="icon: close"></a>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                <ng-template #noUpcomingEvents>
+                    <p>Üritusi pole hetkel.</p>
+                </ng-template>
                 <div class="uk-card-footer uk-background-muted">
-                    <a href="#" class="uk-button uk-button-primary uk-width-1-1">Lisa üritus</a>
+                    <a href="/events/add" class="uk-button uk-button-primary uk-width-1-1">Lisa üritus</a>
                 </div>
             </div>
         </div>
@@ -46,18 +50,23 @@
                 <div class="uk-card-header uk-background-primary uk-light uk-text-center">
                     <h5 class="uk-margin-remove">Toiminud üritused</h5>
                 </div>
-                <div class="uk-card-body uk-padding-remove">
-                    <div class="uk-list uk-list-divider">
-                        <div class="uk-flex uk-flex-between uk-flex-middle uk-padding-small">
-                            <div class="uk-width-3-4">
-                                <a href="#">1. Past Event Name</a>
-                            </div>
-                            <div class="uk-width-1-4 uk-text-right">
-                                07.02.2025
+                <div *ngIf="pastEvents.length; else noPastEvents">
+                    <div *ngFor="let event of pastEvents; let i = index" class="uk-card-body uk-padding-remove">
+                        <div class="uk-list uk-list-divider">
+                            <div class="uk-flex uk-flex-between uk-flex-middle uk-padding-small">
+                                <div class="uk-width-3-4">
+                                    <a href="/events/{{event.id}}">{{ i + 1 }}. {{ event.name }}</a>
+                                </div>
+                                <div class="uk-width-1-4 uk-text-right">
+                                    {{ event.eventDate | date: 'dd.MM.yyyy' }}
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                <ng-template #noPastEvents>
+                    <p>Varasemaid üritusi pole.</p>
+                </ng-template>
             </div>
         </div>
     </div>

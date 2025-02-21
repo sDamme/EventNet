@@ -1,54 +1,95 @@
-<form [formGroup]="individualForm" (ngSubmit)="onSubmit()">
-    <!-- Hidden Fields -->
+<form [formGroup]="individualForm" (ngSubmit)="onSubmit()" class="uk-form-horizontal">
     <input type="hidden" formControlName="eventId">
     <input type="hidden" formControlName="id">
 
     <!-- First Name -->
     <div class="uk-margin">
-        <label class="uk-form-label" for="firstName">Eesnimi:</label>
-        <div class="uk-form-controls">
-            <input type="text" id="firstName" class="uk-input" formControlName="firstName">
+        <div class="uk-grid-small" uk-grid>
+            <div class="uk-width-1-3@m">
+                <label class="uk-form-label" for="firstName">Eesnimi:</label>
+            </div>
+            <div class="uk-width-expand@m">
+                <input type="text" id="firstName" class="uk-input uk-width-1-1" formControlName="firstName">
+            </div>
         </div>
     </div>
 
     <!-- Last Name -->
     <div class="uk-margin">
-        <label class="uk-form-label" for="lastName">Perekonnanimi:</label>
-        <div class="uk-form-controls">
-            <input type="text" id="lastName" class="uk-input" formControlName="lastName">
+        <div class="uk-grid-small" uk-grid>
+            <div class="uk-width-1-3@m">
+                <label class="uk-form-label" for="lastName">Perekonnanimi:</label>
+            </div>
+            <div class="uk-width-expand@m">
+                <input type="text" id="lastName" class="uk-input uk-width-1-1" formControlName="lastName">
+            </div>
         </div>
     </div>
 
     <!-- Personal ID Code -->
     <div class="uk-margin">
-        <label class="uk-form-label" for="personalIdCode">Isikukood:</label>
-        <div class="uk-form-controls">
-            <input type="text" id="personalIdCode" class="uk-input" formControlName="personalIdCode">
+        <div class="uk-grid-small" uk-grid>
+            <div class="uk-width-1-3@m">
+                <label class="uk-form-label" for="personalIdCode">Isikukood:</label>
+            </div>
+            <div class="uk-width-expand@m">
+                <input type="text" id="personalIdCode" class="uk-input uk-width-1-1" formControlName="personalIdCode">
+                <div *ngIf="individualForm.get('personalIdCode')?.touched && individualForm.get('personalIdCode')?.invalid">
+                    <span class="uk-text-danger" *ngIf="individualForm.get('personalIdCode')?.errors?.['required']">
+                        Isikukood on kohustuslik.
+                    </span>
+                    <span class="uk-text-danger" *ngIf="individualForm.get('personalIdCode')?.errors?.['minlength'] || individualForm.get('personalIdCode')?.errors?.['maxlength']">
+                        Isikukood peab olema 11 numbrit.
+                    </span>
+                    <span class="uk-text-danger" *ngIf="individualForm.get('personalIdCode')?.errors?.['pattern']">
+                        Isikukood peab sisaldama ainult numbreid.
+                    </span>
+                    <span class="uk-text-danger" *ngIf="individualForm.get('personalIdCode')?.errors?.['personalIdCodeInvalid']">
+                        {{ individualForm.get('personalIdCode')?.errors?.['personalIdCodeInvalid'] }}
+                    </span>
+                </div>
+            </div>
         </div>
     </div>
 
     <!-- Payment Type -->
     <div class="uk-margin">
-        <label class="uk-form-label" for="individualPaymentType">Makseviis:</label>
-        <div class="uk-form-controls">
-            <select id="individualPaymentType" class="uk-select" formControlName="paymentType">
-                <option value="Cash">Sularaha</option>
-                <option value="BankTransfer">Panga�lekanne</option>
-            </select>
+        <div class="uk-grid-small" uk-grid>
+            <div class="uk-width-1-3@m">
+                <label class="uk-form-label" for="individualPaymentType">Makseviis:</label>
+            </div>
+            <div class="uk-width-expand@m">
+                <select id="individualPaymentType" class="uk-select uk-width-1-1" formControlName="paymentType">
+                    <option value="Cash">Sularaha</option>
+                    <option value="BankTransfer">Pangaülekanne</option>
+                </select>
+            </div>
         </div>
     </div>
 
     <!-- Extra Information -->
     <div class="uk-margin">
-        <label class="uk-form-label" for="description">Lisainfo:</label>
-        <div class="uk-form-controls">
-            <textarea id="description" rows="3" class="uk-textarea" formControlName="description"></textarea>
+        <div class="uk-grid-small" uk-grid>
+            <div class="uk-width-1-3@m">
+                <label class="uk-form-label" for="description">Lisainfo:</label>
+            </div>
+            <div class="uk-width-expand@m">
+                <textarea id="description" rows="3" class="uk-textarea uk-width-1-1" formControlName="description"></textarea>
+                <div *ngIf="individualForm.get('description')?.touched && individualForm.get('description')?.invalid">
+                    <span class="uk-text-danger" *ngIf="individualForm.get('description')?.errors?.['required']">
+                        Lisainfo täitmine on kohustuslik.
+                    </span>
+                    <span class="uk-text-danger" *ngIf="individualForm.get('description')?.errors?.['maxlength']">
+                        Lisainfo võib olla maksimaalselt 1500 tähemärki.
+                    </span>
+                </div>
+            </div>
         </div>
     </div>
 
     <!-- Buttons -->
     <div class="uk-flex uk-flex-between">
-        <button type="button" class="uk-button uk-button-default" (click)="router.navigate(['/previous-route'])">Tagasi</button>
+        <button type="button" class="uk-button uk-button-secondary" (click)="router.navigate(['/previous-route'])">Tagasi</button>
         <button type="submit" class="uk-button uk-button-primary" [disabled]="individualForm.invalid">Salvesta</button>
     </div>
 </form>

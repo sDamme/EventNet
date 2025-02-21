@@ -12,11 +12,11 @@ import { AppEventService } from 'src/app/services/event.service';
 })
 export default class AppAddEventComponent {
     eventForm!: FormGroup;
-
+    title: string = "Ürituse lisamine";
     constructor(
         private fb: FormBuilder,
         private eventService: AppEventService,
-        private router: Router
+        public router: Router
     ) { }
 
     ngOnInit(): void {
