@@ -7,7 +7,7 @@
     {
         public async Task<Result> HandleAsync(DeleteEventRequest request)
         {
-            var entity = eventRepository.DeleteAsync(request.Id);
+            await eventRepository.DeleteAsync(request.Id);
 
             await unitOfWork.SaveChangesAsync();
 
