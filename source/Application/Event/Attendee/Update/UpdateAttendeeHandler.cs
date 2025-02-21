@@ -7,7 +7,7 @@
     {
         public async Task<Result> HandleAsync(UpdateAttendeeRequest request)
         {
-            var attendee = await attendeeRepository.GetAsync(request.AttendeeId);
+            var attendee = await attendeeRepository.GetAsync(request.Id);
             if (attendee is null)
                 return new Result(NotFound);
 

@@ -2,7 +2,7 @@
 namespace EventNet.Application
 {
     public sealed record UpdateAttendeeRequest(
-        long AttendeeId,
+        long Id,
         PaymentType PaymentType,
         string? FirstName,
         string? LastName,

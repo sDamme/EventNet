@@ -28,8 +28,8 @@
         [HttpPut("{attendeeId:long}")]
         public IActionResult Update(long eventId, long attendeeId, UpdateAttendeeRequest request)
         {
-            var fullRequest = request with { AttendeeId = attendeeId };
-            return Mediator.HandleAsync<UpdateAttendeeRequest, Result>(fullRequest).ApiResult();
+            var fullRequest = request with { Id = attendeeId };
+            return Mediator.HandleAsync<UpdateAttendeeRequest>(fullRequest).ApiResult();
         }
 
         // DELETE api/events/{eventId}/attendees/{attendeeId}
