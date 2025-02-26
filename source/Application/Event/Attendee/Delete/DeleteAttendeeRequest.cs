@@ -1,4 +1,4 @@
-﻿namespace EventNet.Application
+namespace EventNet.Application
 {
-    public sealed record DeleteAttendeeRequest(long Id);
+    public sealed record DeleteAttendeeRequest(long EventId, long AttendeeId);
 }

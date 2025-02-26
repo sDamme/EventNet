@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
@@ -21,7 +21,7 @@ namespace EventNet.Domain
             SetName(name);
             SetEventDate(eventDate);
             SetLocation(location);
-            SetDetails(description);
+            SetDescription(description);
         }
 
         private void SetName(string name)
@@ -45,10 +45,10 @@ namespace EventNet.Domain
             Location = location;
         }
 
-        private void SetDetails(string description)
+        private void SetDescription(string description)
         {
             if (!string.IsNullOrWhiteSpace(description) && description.Length > 1000)
-                throw new ArgumentException($"Details cannot exceed 1000 characters.");
+                throw new ArgumentException($"Description cannot exceed 1000 characters.");
 
             Description = description;
         }
@@ -58,15 +58,12 @@ namespace EventNet.Domain
             SetName(name);
             SetEventDate(eventDate);
             SetLocation(location);
-            SetDetails(description);
+            SetDescription(description);
         }
 
         public void AddAttendee(Attendee attendee)
         {
             ArgumentNullException.ThrowIfNull(attendee);
-
-            //if (EventDate <= DateTime.UtcNow)
-            //    throw new InvalidOperationException("Cannot add attendees to a past event.");
 
             if (_attendees.Any(attendee.IsDuplicateOf))
             {
@@ -81,7 +78,6 @@ namespace EventNet.Domain
             var attendee = _attendees.FirstOrDefault(a => a.Id == attendeeId);
             if (attendee == null)
                 throw new InvalidOperationException("Attendee not found.");
-
             updateAction(attendee);
         }
 
